@@ -1,0 +1,10 @@
+.footer {
+  background-color: var( --color-dark-background);
+}
+
+.text {
+  margin-left: auto;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-white);
+}

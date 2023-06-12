@@ -1,6 +1,8 @@
+import { HomeScreen } from "./HomeScreen/HomeScreen";
+
 function App() {
   return (
-    <div className="App"></div>
+    <HomeScreen />
   );
 }
 
