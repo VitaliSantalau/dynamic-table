@@ -1,4 +1,4 @@
-import { HomeScreen } from "./HomeScreen/HomeScreen";
+import { HomeScreen } from "./Screens/HomeScreen/HomeScreen";
 
 function App() {
   return (
