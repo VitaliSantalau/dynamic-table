@@ -1,3 +1,10 @@
 # dynamic-table
 
-recruitment task
+KONGSBERG - recruitment task
+
+## technology stack
+
+ - React (Typescript)
+ - Redux (Redux Toolkit)
+ - Axios
+ - Lodash
