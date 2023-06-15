@@ -1,4 +1,4 @@
-import { TableColumns } from "types/types";
+import { TBreadcrumb, TableColumns } from "types/types";
 
 
 export const TABLE_COLUMNS: TableColumns[] = [
@@ -8,3 +8,8 @@ export const TABLE_COLUMNS: TableColumns[] = [
   TableColumns.language,
   TableColumns.published,
 ];
+
+export const INIT_BREADCRUMB: TBreadcrumb = {
+  label: 'Books',
+  level: 1,  
+};

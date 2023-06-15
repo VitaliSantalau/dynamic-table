@@ -6,10 +6,22 @@ export enum TableColumns {
   published = 'published',
 }
 
-export type TBook = {
+export type TBreadcrumb = {
+  label: string;
+  level: number;
+}
+
+export type TRow = {
   [TableColumns.id]: string;
   [TableColumns.author]: string;
   [TableColumns.title]: string;
   [TableColumns.language]: string;
   [TableColumns.published]: string;
+  breadcrumb: TBreadcrumb;
+}
+
+export type TBook = {
+  id: string,
+  title: string,
+  breadcrumb: TBreadcrumb;
 }

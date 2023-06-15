@@ -18,21 +18,18 @@ th {
 
 td {
   padding: 5px;
+  cursor: pointer;
 }
 
 .selectedRow {
-  background-color: blue;
+  color: var(--color-white);
+  background-color: var(--color-select-row);
 }
 
 .detailsRow {
-  height: 0;
-  overflow: hidden;
-  transition: all 0.3s ease-in-out;
+ 
 }
 
-.expandedRow {
-  height: 50px;
-}
 
 /* .responsiveTable .tdBefore {
   background-color: #c81b1b;
