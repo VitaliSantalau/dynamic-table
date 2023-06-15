@@ -7,3 +7,15 @@
   font-size: 24px;
   text-transform: uppercase;
 }
+
+@media screen and (max-width: 640px) {
+  .title {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .title {
+    font-size: 10px;
+  }
+}

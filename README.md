@@ -1,4 +1,4 @@
-# dynamic-table
+# Dynamic table with row selection and breadcrumb
 
 KONGSBERG - recruitment task
 

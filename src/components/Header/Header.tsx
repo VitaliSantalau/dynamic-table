@@ -9,9 +9,9 @@ export const Header: FC = () => {
       <div className="container">
         <div className="row">
           <Logo />
-          <p className={ styles.title }>
+          <h1 className={ styles.title }>
             Recruitment task
-          </p>
+          </h1>
         </div>
       </div>
     </header>

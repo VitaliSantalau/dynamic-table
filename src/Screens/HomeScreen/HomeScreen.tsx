@@ -7,11 +7,9 @@ import { Table } from "components/Table/Table";
 import { Layout } from "components/Layout/Layout";
 import { INIT_BREADCRUMB, TABLE_COLUMNS } from "constants/constants";
 import { Breadcrumbs } from "components/Breadcrumbs/Breadcrumbs";
-import { updateBreadcrumbs } from "./utils";
-import { useAppDispatch, useAppSelector } from "store/store";
+import { updateBreadcrumbs } from "../../utils/utils";
+import { useAppDispatch } from "store/store";
 import { hideLoader, showLoader } from "components/Loader/store/LoaderSlice";
-import { selectIsLoading } from "components/Loader/store/selectors";
-import { useBinarySwitcher } from "hooks/useBinarySwitcher";
 
 
 export const HomeScreen: FC = () => {

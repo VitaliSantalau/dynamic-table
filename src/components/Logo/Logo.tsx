@@ -5,10 +5,12 @@ import { LogoIcon } from "assets";
 
 export const Logo: FC = () => {
   return (
-    <img
-      src={ LogoIcon }
-      alt="logo icon"
-      className={ styles.icon }
-    />
+    <a href="https://www.kongsberg.com/" target="_blank" rel="noreferrer">
+      <img
+        src={ LogoIcon }
+        alt="logo icon"
+        className={ styles.icon }
+      />
+    </a>
   )
 };
