@@ -16,7 +16,7 @@ export const updateBreadcrumbs = ({
 
   // NOTE: update breadcrumb trail based on the current level
   const updatedTrail = currentIndex !== -1 
-  ? [...breadcrumbs.slice(0, currentIndex + 1), newBreadscrum] 
+  ? [...breadcrumbs.slice(0, currentIndex), newBreadscrum] 
   : [...breadcrumbs, newBreadscrum];
 
   return updatedTrail;

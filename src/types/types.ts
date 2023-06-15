@@ -25,3 +25,9 @@ export type TBook = {
   title: string,
   breadcrumb: TBreadcrumb;
 }
+
+export type TDetailsBook = {
+  id: string,
+  title: string,
+  image: string | undefined;
+}

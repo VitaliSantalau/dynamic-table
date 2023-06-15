@@ -6,8 +6,9 @@
   --color-background: #f7f4f0f2;
   --color-dark-background: #001639;
   --color-select-row: #00163973;
-  --color-hover: #cdcdd0;
+  --color-select-book: #001639;
+  --color-hover: #00163956;
+  --color-image: #00163925;
   --color-green: #6DB81C;
-  --color-orange: #FFA500;
   --color-red: #E52A1D;
 }

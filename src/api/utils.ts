@@ -1,4 +1,4 @@
-import { TBook, TRow } from "types/types"
+import { TBook, TDetailsBook, TRow } from "types/types"
 
 
 export const processRowData = (data: any): TRow => ( 
@@ -27,3 +27,11 @@ export const processBookData = (data: any): TBook => (
   }
 );
 
+
+export const processDetailsBookData = (data: any): TDetailsBook => ( 
+  {
+    id: data.id,
+    title: data.volumeInfo.title,
+    image: data.volumeInfo.imageLinks?.thumbnail
+  }
+);

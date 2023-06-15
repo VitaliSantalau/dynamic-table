@@ -8,24 +8,33 @@ import { Layout } from "components/Layout/Layout";
 import { INIT_BREADCRUMB, TABLE_COLUMNS } from "constants/constants";
 import { Breadcrumbs } from "components/Breadcrumbs/Breadcrumbs";
 import { updateBreadcrumbs } from "./utils";
+import { useAppDispatch, useAppSelector } from "store/store";
+import { hideLoader, showLoader } from "components/Loader/store/LoaderSlice";
+import { selectIsLoading } from "components/Loader/store/selectors";
+import { useBinarySwitcher } from "hooks/useBinarySwitcher";
 
 
 export const HomeScreen: FC = () => {
   const [rows, setRows] = useState<TRow[]>([]);
   const [selectedRow, setSelectedRow] = useState<TRow | null>(null);
-
   const [selectedBook, setSelectedBook] = useState<TBook | null>(null);
-
   const [breadcrumbs, setBreadcrumbs] = useState<TBreadcrumb[]>([INIT_BREADCRUMB]);
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  const dispatch = useAppDispatch();
 
   useOnMount(
     () => {
+      dispatch(showLoader());
+
       fetchRows()
         .then((response) => {
-            setRows(response);
+          setRows(response);
+          setIsLoading(false);
         })
         .catch((error) => console.log(error))
+        .finally(() => dispatch(hideLoader()))
     }
   )
 
@@ -45,7 +54,6 @@ export const HomeScreen: FC = () => {
     setBreadcrumbs(updatedTrail);
   }
 
-
   const handleBreadcrumbClick = (index: number) => {
     const updatedTrail = breadcrumbs.slice(0, index + 1);
 
@@ -60,18 +68,23 @@ export const HomeScreen: FC = () => {
     <Layout>
       <main className={ styles.main }>
           <div className={ styles.container }>
-            <Breadcrumbs 
-              data={ breadcrumbs }
-              onClick={ handleBreadcrumbClick }
-            />
-            <Table
-              columns={ TABLE_COLUMNS }
-              data={ rows }
-              onRowClick={ handleRowClick }
-              selectedRow={ selectedRow }
-              onBookClick={ handleBookClick }
-              selectedBook={ selectedBook }
-            />
+            {
+              !isLoading && 
+                <> 
+                  <Breadcrumbs 
+                    data={ breadcrumbs }
+                    onClick={ handleBreadcrumbClick }
+                  />
+                  <Table
+                    columns={ TABLE_COLUMNS }
+                    data={ rows }
+                    onRowClick={ handleRowClick }
+                    selectedRow={ selectedRow }
+                    onBookClick={ handleBookClick }
+                    selectedBook={ selectedBook }
+                  />
+                </>
+            }
           </div>
       </main>
     </Layout>

@@ -1,10 +1,10 @@
-import { fetchBooks } from "api/api";
+import { fetchBooks, fetchDetailsBook } from "api/api";
 import classNames from "classnames";
-import { useBinarySwitcher } from "hooks/useBinarySwitcher";
+import { hideLoader, showLoader } from "components/Loader/store/LoaderSlice";
 import { FC, Fragment, useCallback, useState } from "react";
 import { Tbody, Td, Tr } from "react-super-responsive-table";
-import { TableColumns, TBook, TRow } from "types/types";
-import { Spinner } from "components/Spinner/Spinner";
+import { useAppDispatch } from "store/store";
+import { TableColumns, TBook, TDetailsBook, TRow } from "types/types";
 
 
 export const TableBody: FC<{
@@ -23,11 +23,15 @@ export const TableBody: FC<{
   selectedBook,
 }) => {
   const [books, setBooks] = useState<TBook[]>([]);
-  const [isLoading, showSpinner, hideSpinner] = useBinarySwitcher(false);
+  const [book, setBook] = useState<TDetailsBook | null>(null)
+
+  const dispatch = useAppDispatch();
+
 
   const handleRowClick = useCallback(
     (row: TRow) => () => {
-      showSpinner();
+      dispatch(showLoader());
+      setBook(null);
 
       fetchBooks(row.author)
         .then(response => {
@@ -35,16 +39,25 @@ export const TableBody: FC<{
           setBooks(response);
         })
         .catch((error) => console.log(error))
-        .finally(hideSpinner)
+        .finally(() => dispatch(hideLoader()))
     },
-    [hideSpinner, onRowClick, showSpinner]
+    [dispatch, onRowClick]
   );
 
   const handleBookClick = useCallback(
     (book: TBook) => () => {
-      onBookClick(book);
+      dispatch(showLoader());
+  
+      fetchDetailsBook(book.id)
+        .then(response => {
+          onBookClick(book);
+          setBook(response);
+        })
+        .catch((error) => console.log(error))
+        .finally(() => dispatch(hideLoader()))
+      
     },
-    [onBookClick]
+    [dispatch, onBookClick]
   );
 
 
@@ -65,7 +78,7 @@ export const TableBody: FC<{
         }
       </Tr>
       <Tr className={ classNames(
-        selectedRow?.id === item.id && "detailsRow"
+        "detailsRow"
       ) }>
         <Td colSpan={ columns.length } >
           {
@@ -77,6 +90,25 @@ export const TableBody: FC<{
                   books.map(renderBook)
                 }
               </ul>
+              <section className={ classNames(
+                  selectedRow?.id === item.id && "imageContainer"
+                )}
+              >
+                {
+                  !!book && !book.image && 
+                    <span className="imageText">
+                      Image preview does not exist
+                    </span>
+                }
+                {
+                  !!book?.image &&
+                    <img
+                      src={ book?.image }
+                      className="image"
+                      alt="book preview"
+                    />
+                }
+              </section>
             </>
           }
         </Td>
@@ -88,10 +120,10 @@ export const TableBody: FC<{
     <li 
       key={ item.id }
       className={ classNames(
-        selectedBook?.id === item.id && "selectedRow"
+        "book",
+        selectedBook?.id === item.id && "selectedBook"
       )}
       onClick={handleBookClick(item)}
-
     >
       { item.title }
     </li>
@@ -102,7 +134,6 @@ export const TableBody: FC<{
       <Tbody>
         {data.map(renderRowBody)}
       </Tbody>
-      <Spinner isVisible={ isLoading }/>
     </>
   )
 }
