@@ -11,8 +11,8 @@ export const Loader: FC = () => {
   return (
     <BallTriangle
       height={ 100 }
-      width={100}
-      radius={5}
+      width={ 100 }
+      radius={ 5 }
       color="#001639"
       ariaLabel="ball-triangle-loading"
       wrapperClass={ styles.loader }

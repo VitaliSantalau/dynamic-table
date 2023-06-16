@@ -34,10 +34,6 @@ td {
   background-color: var(--color-background);
 }
 
-.book {
-
-}
-
 .book:hover {
   color: var(--color-hover);
 }
@@ -48,6 +44,9 @@ td {
 }
 
 .imageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 180px;
   height: 230px;
   border-radius: 5px;
@@ -55,11 +54,40 @@ td {
   overflow: hidden;
 }
 
+.imageIcon {
+  width: 64px;
+  height: 64px;
+}
+
+.imageText {
+  margin: 0 20px;
+  font-size: 20px;
+  text-align: center;
+  color: var(--color-white);
+}
+
 .image {
   width: 100%;
   height: 100%;
 }
 
-/* .responsiveTable .tdBefore {
-  background-color: #c81b1b;
-} */
+@media screen and (max-width: 640px) {
+  .responsiveTable thead {
+    display: none;
+  }
+
+  .imageContainer {
+    width: 120px;
+    height: 160px;
+  }
+  
+  .imageIcon {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .imageText {
+    margin: 0 10px;
+    font-size: 16px;
+  }
+}

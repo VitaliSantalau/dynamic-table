@@ -3,6 +3,7 @@ import styles from "./Breadcrumb.module.css";
 import { useAppDispatch, useAppSelector } from "store/store";
 import { selectBreadcrumb } from "./store/selectors";
 import { selfUpdateBreadcrum } from "./store/BreadcrumbSlice";
+import { resetDetailsBook, resetSelectedBook, resetSelectedRow } from "components/Table/store/TableSlice";
 
 
 export const Breadcrumb: FC = () => {
@@ -13,8 +14,11 @@ export const Breadcrumb: FC = () => {
   const handleClick = (index: number) => () => {
     dispatch(selfUpdateBreadcrum(index));
 
-    // index === 0 && setSelectedRow(null);
-    // index === 1 && setSelectedBook(null);
+    if (index === 0 ) dispatch(resetSelectedRow());
+    if (index === 1) {
+      dispatch(resetSelectedBook());
+      dispatch(resetDetailsBook());
+    };
   };
 
 
