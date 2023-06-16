@@ -26,7 +26,11 @@ export const Breadcrumb: FC = () => {
     <section className={ styles.container }>
       {
         breadcrumb.map((item, index) => 
-          <span key={ item.label } onClick={ handleClick(index) }>
+          <span 
+            key={ item.label }
+            onClick={ handleClick(index) }
+            className={ styles.breadcrumb }
+          >
             { item.label }
             {
               index < breadcrumb.length - 1 && 

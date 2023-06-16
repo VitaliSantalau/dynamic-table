@@ -6,8 +6,12 @@
   line-height: 28px;
 }
 
-.container > span {
+.breadcrumb {
   cursor: pointer;
+}
+
+.breadcrumb:hover {
+  color: var(--color-hover);
 }
 
 .separator {

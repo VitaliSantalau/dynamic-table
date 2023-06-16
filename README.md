@@ -11,4 +11,3 @@ KONGSBERG - recruitment task
 ### deploy link
 
 https://dynamic-table-vitalisantalau.vercel.app
-
