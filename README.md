@@ -10,5 +10,5 @@ KONGSBERG - recruitment task
 
 ### deploy link
 
-https://dynamic-table-five.vercel.app
+https://dynamic-table-vitalisantalau.vercel.app
 
