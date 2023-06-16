@@ -1,5 +1,5 @@
 import { Loader } from "components/Loader/Loader";
-import { HomeScreen } from "./screens/HomeScreen/HomeScreen";
+import { HomeScreen } from "./Screens/HomeScreen/HomeScreen";
 import { Provider } from "react-redux";
 import { store } from "store/store";
 
