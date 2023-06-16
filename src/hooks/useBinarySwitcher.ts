@@ -10,6 +10,7 @@ type BinarySwitcher = (
   () => void
 ];
 
+
 export const useBinarySwitcher: BinarySwitcher = (initialValue = false) => {
   const [value, setValue] = useState(initialValue);
 

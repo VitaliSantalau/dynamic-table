@@ -7,4 +7,8 @@ KONGSBERG - recruitment task
  - React (Typescript)
  - Redux (Redux Toolkit)
  - Axios
- - Lodash
+
+### deploy link
+
+https://dynamic-table-five.vercel.app
+

@@ -14,7 +14,8 @@ import { hideLoader, showLoader } from "components/Loader/store/LoaderSlice";
 export const HomeScreen: FC = () => {
   const [rows, setRows] = useState<TRow[]>([]);
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
 
@@ -25,10 +26,12 @@ export const HomeScreen: FC = () => {
       fetchRows()
         .then((response) => {
           setRows(response);
-          setIsLoading(false);
         })
-        .catch((error) => console.log(error))
-        .finally(() => dispatch(hideLoader()))
+        .catch(() => setError(true))
+        .finally(() => {
+          setIsLoading(false);
+          dispatch(hideLoader());
+        })
     }
   )
 
@@ -38,7 +41,7 @@ export const HomeScreen: FC = () => {
       <main className={ styles.main }>
           <div className={ styles.container }>
             {
-              !isLoading && 
+              !isLoading && !error &&
                 <> 
                   <Breadcrumb />
                   <Table
@@ -46,6 +49,12 @@ export const HomeScreen: FC = () => {
                     rows={ rows }
                   />
                 </>
+            }
+            {
+              !isLoading && error &&
+                <p className={ styles.error }>
+                  Oops, something is wrong, please try again later
+                </p>
             }
           </div>
       </main>

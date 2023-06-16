@@ -71,6 +71,12 @@ td {
   height: 100%;
 }
 
+.rowError {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 20px;
+}
+
 @media screen and (max-width: 640px) {
   .responsiveTable thead {
     display: none;

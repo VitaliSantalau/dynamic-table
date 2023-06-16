@@ -21,6 +21,7 @@ export const TableRow: FC<{
   selected,
 }) => {
   const [books, setBooks] = useState<TBook[]>([]);
+  const [error, setError] = useState<boolean>(false);
 
   const selectedBook = useAppSelector(selectSelectedBook);
 
@@ -29,6 +30,7 @@ export const TableRow: FC<{
   const handleRowClick = useCallback(
     () => {
       dispatch(showLoader());
+      setError(false);
 
       fetchBooks(row.author)
         .then(response => {
@@ -38,7 +40,7 @@ export const TableRow: FC<{
 
           setBooks(response);
         })
-        .catch((error) => console.log(error))
+        .catch(() => setError(true))
         .finally(() => dispatch(hideLoader()))
     },
     [dispatch, row]
@@ -64,7 +66,7 @@ export const TableRow: FC<{
       <Tr className="detailsRow">
         <Td colSpan={ columns.length } >
           {
-            selected &&
+            selected && !error &&
               <>
                 another <b>Books</b> written by <b>{ row.author }</b>
                 <ul>
@@ -80,6 +82,12 @@ export const TableRow: FC<{
                 </ul>
                 <DetailsBook />
               </>
+          }
+          {
+            error &&
+              <p className="rowError">
+                Oops, something is wrong, please try again later
+              </p>
           }
         </Td>
       </Tr>

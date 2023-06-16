@@ -10,3 +10,10 @@
   margin: 0 auto;
   padding: 20px 0;
 }
+
+.error {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 20px;
+}
+  

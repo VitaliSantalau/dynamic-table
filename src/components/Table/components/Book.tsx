@@ -6,6 +6,7 @@ import { FC, useCallback } from "react";
 import { useAppDispatch } from "store/store";
 import { TBook } from "types/types";
 import { updateDetailsBook, updateSelectedBook } from "../store/TableSlice";
+import { noop } from "lodash";
 
 export const Book: FC<{
   book: TBook;
@@ -28,7 +29,7 @@ export const Book: FC<{
 
           dispatch(updateDetailsBook(response))
         })
-        .catch((error) => console.log(error))
+        .catch(noop)
         .finally(() => dispatch(hideLoader()))
       
     },
